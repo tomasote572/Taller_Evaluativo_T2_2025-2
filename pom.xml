@@ -20,7 +20,7 @@
         <!-- Configuración SonarQube -->
         <sonar.projectKey>Taller_Evaluativo_2</sonar.projectKey>
         <sonar.host.url>http://localhost:9000</sonar.host.url>
-        <sonar.login>tu_token_aqui</sonar.login>
+        <sonar.login>sqa_e98a67e5390ded6e9a110d0ae7304508c48593ad</sonar.login>
     </properties>
     <dependencies>
         <!-- Spring Boot Web -->
@@ -43,7 +43,7 @@
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-            <version>${springdoc.version}</version>
+            <version>2.1.0</version>
         </dependency>
     </dependencies>
     <build>
