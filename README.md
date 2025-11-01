@@ -88,7 +88,7 @@ Clases principales que creadas y su responsabilidad:
 - despliegue automatico con azure
   - ![img_10.png](src/Imagenes/img_10.png)
 ## Verificacion Sawgger
-- 
+- tallerevaluativo2-azangvh2dpbfbpbb.canadacentral-01.azurewebsites.net
 ## Cómo ejecutar el proyecto y las pruebas.
 
 1. Compilar y ejecutar el proyecto usando Maven:
