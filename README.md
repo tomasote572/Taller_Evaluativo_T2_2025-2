@@ -73,8 +73,11 @@ Clases principales que creadas y su responsabilidad:
 
 ## Comprovacion de las funcionalidades solicitadas
 - Validar que se registre una receta
-- validar la busqueda
+- validar la busqueda por ingredientes que devuelva el resultado correcto
+- validar que se devuelva error si se consulta una receta incexistente
 
+## CI/CD con GitHub Actions:
+- 
 ## Cómo ejecutar el proyecto y las pruebas.
 
 1. Compilar y ejecutar el proyecto usando Maven:
