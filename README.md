@@ -59,6 +59,21 @@ Clases principales que creadas y su responsabilidad:
   - `createDefaultChef()` — creación con valores por defecto.
   - `createFromPrototype()` — crea una copia a partir de un prototipo.
 
+## Copilacion y covertura de codigo
+    
+#### Cobertura de código con JaCoCo y SonarQube:
+- ![img_1.png](img_1.png) 
+- ![img_2.png](img_2.png)
+
+## Creacion de la base de datos;
+- se crea una cuenta en mongo db y un usuario para la base de datos
+  - ![img_3.png](img_3.png)
+- ya cargada se corre el sawgger para crear las tablas en la base de datos y su respectiva conexion
+  -  ![img_4.png](img_4.png)
+
+## Comprovacion de las funcionalidades solicitadas
+- Validar que se registre una receta
+- validar la busqueda
 
 ## Cómo ejecutar el proyecto y las pruebas.
 
