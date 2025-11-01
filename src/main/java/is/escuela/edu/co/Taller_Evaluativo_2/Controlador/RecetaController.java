@@ -2,11 +2,14 @@ package is.escuela.edu.co.Taller_Evaluativo_2.Controlador;
 
 import is.escuela.edu.co.Taller_Evaluativo_2.modelo.Receta;
 import is.escuela.edu.co.Taller_Evaluativo_2.modelo.TipoDeChef;
+import is.escuela.edu.co.Taller_Evaluativo_2.servicios.RecetaService;
 import org.springframework.web.bind.annotation.*;
+import io.swagger.v3.oas.annotations.Operation;
+
 import java.util.List;
 
 @RestController
-@RequestMapping("/recetas")
+@RequestMapping("/api/recetas")
 public class RecetaController {
 
     private final RecetaService recetaService;
@@ -15,63 +18,78 @@ public class RecetaController {
         this.recetaService = recetaService;
     }
 
-    @PostMapping("/Registrar receta de televidente")
+    @Operation(summary = "Crear una receta de Televidente")
+    @PostMapping("/televidente")
     public Receta crearTelevidente(@RequestBody Receta receta) {
-        return recetaService.guardar(receta);
+        receta.getChef().setTipo(TipoDeChef.TELEVIDENTE);
+        return recetaService.crearReceta(receta);
     }
 
-    @PostMapping("/Registrar receta de participante")
+    @Operation(summary = "Crear una receta de Participante")
+    @PostMapping("/participante")
     public Receta crearParticipante(@RequestBody Receta receta) {
-        return recetaService.guardar(receta);
+        receta.getChef().setTipo(TipoDeChef.PARTICIPANTE);
+        return recetaService.crearReceta(receta);
     }
 
-    @PostMapping("/Registrar receta de chef")
+    @Operation(summary = "Crear una receta de Chef Profesional")
+    @PostMapping("/chef")
     public Receta crearChef(@RequestBody Receta receta) {
-        return recetaService.guardar(receta);
+        receta.getChef().setTipo(TipoDeChef.CHEF);
+        return recetaService.crearReceta(receta);
     }
 
+    @Operation(summary = "Obtener todas las recetas")
     @GetMapping
-    public List<Receta> todaslasrecetas() {
-        return recetaService.todaslasrecetas();
+    public List<Receta> obtenerTodasRecetas() {
+        return recetaService.obtenerTodasRecetas();
     }
 
-    @GetMapping("/Receta por ID")
-    public Receta porId(@PathVariable Long id) {
-        return recetaService.porId(id);
+    @Operation(summary = "Obtener receta por ID")
+    @GetMapping("/{id}")
+    public Receta obtenerRecetaPorId(@PathVariable Long id) {
+        return recetaService.obtenerRecetaPorId(id);
     }
 
-    @GetMapping("/Recetas de participantes")
-    public List<Receta> deParticipantes() {
-        return recetaService.porTipoChef(TipoDeChef.PARTICIPANTE);
+    @Operation(summary = "Obtener recetas de Participantes")
+    @GetMapping("/participantes")
+    public List<Receta> obtenerRecetasParticipantes() {
+        return recetaService.obtenerRecetasPorTipoChef(TipoDeChef.PARTICIPANTE);
     }
 
-    @GetMapping("/Recetas de televidentes")
-    public List<Receta> deTelevidentes() {
-        return recetaService.porTipoChef(TipoDeChef.TELEVIDENTE);
+    @Operation(summary = "Obtener recetas de Televidentes")
+    @GetMapping("/televidentes")
+    public List<Receta> obtenerRecetasTelevidentes() {
+        return recetaService.obtenerRecetasPorTipoChef(TipoDeChef.TELEVIDENTE);
     }
 
-    @GetMapping("/Recetas de chefs")
-    public List<Receta> deChefs() {
-        return recetaService.porTipoChef(TipoDeChef.CHEF);
+    @Operation(summary = "Obtener recetas de Chefs Profesionales")
+    @GetMapping("/chefs")
+    public List<Receta> obtenerRecetasChefs() {
+        return recetaService.obtenerRecetasPorTipoChef(TipoDeChef.CHEF);
     }
 
-    @GetMapping("/Recetas por temporada")
-    public List<Receta> porTemporada(@PathVariable String temporada) {
-        return recetaService.porTemporada(temporada);
+    @Operation(summary = "Obtener recetas por temporada")
+    @GetMapping("/temporada")
+    public List<Receta> obtenerRecetasPorTemporada(@RequestParam String temporada) {
+        return recetaService.obtenerRecetasPorTemporada(temporada);
     }
 
-    @GetMapping("/Buscar por ingrediente")
-    public List<Receta> porIngrediente(@RequestParam String ingrediente) {
-        return recetaService.porIngrediente(ingrediente);
+    @Operation(summary = "Buscar recetas por ingrediente")
+    @GetMapping("/buscar")
+    public List<Receta> buscarRecetasPorIngrediente(@RequestParam String ingrediente) {
+        return recetaService.buscarRecetasPorIngrediente(ingrediente);
     }
 
-    @DeleteMapping("/Eliminar receta")
-    public void eliminar(@PathVariable Long id) {
-        recetaService.eliminar(id);
+    @Operation(summary = "Eliminar receta por ID")
+    @DeleteMapping("/{id}")
+    public void eliminarReceta(@PathVariable Long id) {
+        recetaService.eliminarReceta(id);
     }
 
-    @PutMapping("/Actualizar receta")
-    public Receta actualizar(@PathVariable Long id, @RequestBody Receta receta) {
-        return recetaService.actualizar(id, receta);
+    @Operation(summary = "Actualizar una receta por ID")
+    @PutMapping("/{id}")
+    public Receta actualizarReceta(@PathVariable Long id, @RequestBody Receta receta) {
+        return recetaService.actualizarReceta(id, receta);
     }
 }

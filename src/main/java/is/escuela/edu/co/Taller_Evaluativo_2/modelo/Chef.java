@@ -1,6 +1,10 @@
 package is.escuela.edu.co.Taller_Evaluativo_2.modelo;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "chefs")
 public class Chef {
+    @Id
     private Long id;
     private String nombre;
     private TipoDeChef tipo;
