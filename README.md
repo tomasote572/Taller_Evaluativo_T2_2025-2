@@ -77,6 +77,10 @@ Clases principales que creadas y su responsabilidad:
 - validar que se devuelva error si se consulta una receta incexistente
 
 ## CI/CD con GitHub Actions:
+- ejecutar a ala rama develop
+- despliegue automatico con azure
+
+## Verificacion Sawgger
 - 
 ## Cómo ejecutar el proyecto y las pruebas.
 

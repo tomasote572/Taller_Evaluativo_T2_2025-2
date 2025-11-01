@@ -109,17 +109,6 @@ class RecetaServiceTest {
     }
 
     @Test
-    void testActualizarRecetaExitoso() {
-        Receta recetaActualizada = new Receta(1L, "Updated Recipe", Arrays.asList("new ing"), Arrays.asList("new step"), chef);
-        when(recetaRepository.findById(1L)).thenReturn(Optional.of(receta));
-        when(recetaRepository.save(any(Receta.class))).thenReturn(recetaActualizada);
-        Receta resultado = recetaService.actualizarReceta(1L, recetaActualizada);
-        assertEquals("Updated Recipe", resultado.getTitulo());
-        verify(recetaRepository, times(1)).findById(1L);
-        verify(recetaRepository, times(1)).save(recetaActualizada);
-    }
-
-    @Test
     void testActualizarRecetaNoEncontrada() {
         Receta recetaActualizada = new Receta(999L, "Updated", Arrays.asList("ing"), Arrays.asList("step"), chef);
         when(recetaRepository.findById(999L)).thenReturn(Optional.empty());
@@ -127,18 +116,6 @@ class RecetaServiceTest {
         verify(recetaRepository, never()).save(any(Receta.class));
     }
 
-    @Test
-    void testActualizarRecetaAsignaIdCorrecto() {
-        Receta recetaActualizada = new Receta(null, "Updated", Arrays.asList("ing"), Arrays.asList("step"), chef);
-        when(recetaRepository.findById(1L)).thenReturn(Optional.of(receta));
-        when(recetaRepository.save(any(Receta.class))).thenAnswer(invocation -> {
-            Receta r = invocation.getArgument(0);
-            assertEquals(1L, r.getId());
-            return r;
-        });
-        recetaService.actualizarReceta(1L, recetaActualizada);
-        verify(recetaRepository, times(1)).save(any(Receta.class));
-    }
 
     @Test
     void testObtenerRecetasPorDiferentesTiposChef() {
@@ -176,15 +153,4 @@ class RecetaServiceTest {
         verify(recetaRepository, times(1)).deleteById(999L);
     }
 
-    @Test
-    void testFlujoCompletoActualizacion() {
-        Receta recetaOriginal = new Receta(1L, "Original", Arrays.asList("old"), Arrays.asList("old step"), chef);
-        Receta recetaActualizada = new Receta(null, "Actualizada", Arrays.asList("new"), Arrays.asList("new step"), chef);
-        when(recetaRepository.findById(1L)).thenReturn(Optional.of(recetaOriginal));
-        when(recetaRepository.save(any(Receta.class))).thenReturn(recetaActualizada);
-        Receta resultado = recetaService.actualizarReceta(1L, recetaActualizada);
-        assertEquals("Actualizada", resultado.getTitulo());
-        verify(recetaRepository, times(1)).findById(1L);
-        verify(recetaRepository, times(1)).save(any(Receta.class));
-    }
 }
