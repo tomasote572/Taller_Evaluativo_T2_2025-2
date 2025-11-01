@@ -13,6 +13,7 @@ public class Receta {
     private List<String> ingredientes;
     private List<String> pasos;
     private Chef chef;
+    private String temporada;
 
     public Receta() {}
 
@@ -43,5 +44,11 @@ public class Receta {
             return chef; }
         public void setChef(Chef chef) {
             this.chef = chef; }
+        public String getTemporada() {
+            return temporada;
+        }
+        public void setTemporada(String temporada) {
+            this.temporada = temporada;
+        }
 }
 

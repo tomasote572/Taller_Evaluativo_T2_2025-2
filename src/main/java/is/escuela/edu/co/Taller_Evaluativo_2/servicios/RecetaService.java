@@ -46,12 +46,11 @@ public class RecetaService {
     }
 
     public Receta actualizarReceta(Long id, Receta recetaActualizada) {
-        obtenerRecetaPorId(id);
-        recetaActualizada.setId(id);
-        if (!recetaRepository.existsById(id)) {
-            throw new RuntimeException("Receta no encontrada con id: " + id);
-        }
-        recetaActualizada.setId(id);
-        return recetaRepository.save(recetaActualizada);
+        Receta recetaExistente = obtenerRecetaPorId(id);
+        recetaExistente.setTitulo(recetaActualizada.getTitulo());
+        recetaExistente.setIngredientes(recetaActualizada.getIngredientes());
+        recetaExistente.setPasos(recetaActualizada.getPasos());
+        recetaExistente.setChef(recetaActualizada.getChef());
+        return recetaRepository.save(recetaExistente);
     }
 }
